@@ -14,7 +14,9 @@ export default class JsFormat implements nconf.IFormat {
   }
 
   parse(text: string) : any {
-    let context = {module: {exports: {}}};
+    let context = {module: {exports: {}}, process: {
+      env: process.env,
+    }};
     vm.runInNewContext(text, context, {
       lineOffset: 0,
       displayErrors: true
